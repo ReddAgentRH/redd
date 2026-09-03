@@ -1,0 +1,29 @@
+{
+  "name": "@redd/cli",
+  "version": "0.1.0",
+  "type": "module",
+  "bin": {
+    "redd": "dist/index.js",
+    "redd-mcp": "dist/mcp/bin.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "commander": "^12.1.0",
+    "ethers": "^6.13.0",
+    "zod": "^4.5.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "tsx": "^4.16.0",
+    "typescript": "^5.5.0",
+    "vitest": "^2.0.0"
+  }
+}

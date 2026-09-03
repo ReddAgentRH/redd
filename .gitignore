@@ -1,0 +1,10 @@
+node_modules/
+dist/
+out/
+cache/
+broadcast/
+lib/
+.env
+.env.*
+*.key
+.DS_Store

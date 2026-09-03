@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  contracts:
+    name: contracts (forge)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Foundry
+        uses: foundry-rs/foundry-toolchain@v1
+      - name: Install libs
+        working-directory: contract
+        run: forge install foundry-rs/forge-std OpenZeppelin/openzeppelin-contracts --no-commit
+      - name: Test
+        working-directory: contract
+        run: forge test -vv
+
+  cli:
+    name: cli (vitest + tsc)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install
+        working-directory: cli
+        run: npm ci
+      - name: Test
+        working-directory: cli
+        run: npm test
+      - name: Typecheck
+        working-directory: cli
+        run: npx tsc --noEmit
